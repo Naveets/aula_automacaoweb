@@ -21,4 +21,5 @@ public class GenericPage {
 
         return driver.findElement(By.className("inventory_item_name"));
     }
+
 }

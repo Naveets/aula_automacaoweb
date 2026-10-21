@@ -1,5 +1,7 @@
 package TestCases;
 
+import Tasks.CheckoutTask;
+import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
 import framework.TestBase;
@@ -12,12 +14,16 @@ public class RealizarCompraComSucessoTest extends TestBase {
 
     LoginTask loginTask = new LoginTask(driver);
     ProdutoTask produtoTask = new ProdutoTask(driver);
+    CheckoutTask checkoutTask = new CheckoutTask(driver);
+    FinishTask finishTask = new FinishTask(driver);
 
     @Test
-    public void realizarCompra() throws InterruptedException{
+    public void realizarCompra() throws InterruptedException {
 
         loginTask.efetuarLogin();
         produtoTask.selecionarProduto();
+        checkoutTask.preencherCheckout();
+
     }
 
 }
