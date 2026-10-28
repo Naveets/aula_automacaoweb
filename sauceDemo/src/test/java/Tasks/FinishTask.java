@@ -1,18 +1,22 @@
 package Tasks;
 
 import PageObjects.FinishPage;
+import PageObjects.LoginPage;
 import Validation.FinishValidation;
 import Validation.GenericValidation;
 import Validation.LoginValidation;
+import framework.Browser.Waits;
 import org.openqa.selenium.WebDriver;
 
 public class FinishTask {
 
+    private LoginPage loginPage;
     private WebDriver driver;
     private FinishPage finishPage;
     private GenericValidation genericValidation;
     private FinishValidation finishValidation;
     private LoginValidation loginValidation;
+    private Waits waits;
     public FinishTask (WebDriver driver){
 
         this.driver = driver;
@@ -20,17 +24,17 @@ public class FinishTask {
         genericValidation = new GenericValidation(this.driver);
         finishValidation = new FinishValidation(this.driver);
         loginValidation = new LoginValidation(this.driver);
+        waits = new Waits(this.driver);
+        loginPage = new LoginPage(this.driver);
     }
 
-    public void finalizarCompra() throws InterruptedException {
+    public void finalizarCompra()  {
         genericValidation.validationTitlePages("Checkout: Complete!");
-        Thread.sleep(500);
         finishValidation.validationSucessoCompra();
-        Thread.sleep(500);
         finishPage.getMenuButton().click();
-        Thread.sleep(1000);
+        waits.loadElement(finishPage.getMenuLogoutLink());
         finishPage.getMenuLogoutLink().click();
-        Thread.sleep(1000);
+        waits.loadElement(loginPage.getLoginButton());
         loginValidation.loginValidation();
 
     }

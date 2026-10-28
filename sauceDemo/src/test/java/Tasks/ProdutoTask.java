@@ -21,15 +21,12 @@ public class ProdutoTask {
 
     }
 
-    public void selecionarProduto() throws InterruptedException{
+    public void selecionarProduto() {
 
         produtoPage.getAddToCartButton().click();
-        Thread.sleep(5000);
         produtoPage.getCartButton().click();
-        Thread.sleep(5000);
         genericValidation.validationTitlePages("Your Cart");
         genericValidation.validationProduto();
-        Thread.sleep(5000);
         cartPage.getCheckoutButton().click();
     }
 }

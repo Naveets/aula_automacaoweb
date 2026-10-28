@@ -13,13 +13,13 @@ public class LoginTask {
         this.driver = driver;
         loginPage = new LoginPage(this.driver);
     }
-    public void efetuarLogin() throws InterruptedException {
+    public void efetuarLogin() {
         loginPage.getUserNameInput().sendKeys("standard_user");
-        Thread.sleep(5000);
+
         loginPage.getUserPasswordInput().sendKeys("secret_sauce");
-        Thread.sleep(5000);
+
         loginPage.getLoginButton().click();
-        Thread.sleep(5000);
+
     }
 
 }
