@@ -4,6 +4,7 @@ import PageObjects.CheckoutPage;
 import Validation.CheckoutValidation;
 import Validation.GenericValidation;
 import framework.Utils.FakersGenerations;
+import framework.Utils.FileOperations;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutTask {
@@ -22,13 +23,33 @@ public class CheckoutTask {
         checkoutValidation = new CheckoutValidation(this.driver);
         fakersGenerations = new FakersGenerations();
     }
+    //    public void preencherCheckout()  {
+    //        genericValidation.validationTitlePages("Checkout: Your Information");
+    //        checkoutPage.getFirstNameInput().sendKeys(fakersGenerations.getFirstName());
+    //        checkoutPage.getLastNameInput().sendKeys(fakersGenerations.getLastName());
+    //        checkoutPage.getZipCodeInput().sendKeys(fakersGenerations.getZipCode());
+    //        checkoutValidation.validaForm();
+    //        checkoutPage.getContinueInput().click();
+    //        genericValidation.validationTitlePages("Checkout: Overview");
+    //        genericValidation.validationProduto();
 
-    public void preencherCheckout()  {
+    public void preencherCheckout2()  {
+
+        String name = fakersGenerations.getFirstName();
+        String lastName = fakersGenerations.getLastName();
+        String zipCode = fakersGenerations.getZipCode();
+
+        FileOperations.setProperties("form","primeiroNome",name);
+        FileOperations.setProperties("form","segundoNome",lastName);
+        FileOperations.setProperties("form","cep",zipCode);
+
+
+
         genericValidation.validationTitlePages("Checkout: Your Information");
-        checkoutPage.getFirstNameInput().sendKeys(fakersGenerations.getFirstName());
-        checkoutPage.getLastNameInput().sendKeys(fakersGenerations.getLastName());
-        checkoutPage.getZipCodeInput().sendKeys(fakersGenerations.getZipCode());
-        checkoutValidation.validaForm();
+        checkoutPage.getFirstNameInput().sendKeys(name);
+        checkoutPage.getLastNameInput().sendKeys(lastName);
+        checkoutPage.getZipCodeInput().sendKeys(zipCode);
+        checkoutValidation.validaCamposForm();
         checkoutPage.getContinueInput().click();
         genericValidation.validationTitlePages("Checkout: Overview");
         genericValidation.validationProduto();

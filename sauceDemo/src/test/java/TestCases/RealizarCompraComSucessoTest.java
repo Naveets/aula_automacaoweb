@@ -5,7 +5,9 @@ import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
 import framework.TestBase;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class RealizarCompraComSucessoTest extends TestBase {
@@ -20,10 +22,20 @@ public class RealizarCompraComSucessoTest extends TestBase {
     @Test
     public void realizarCompra()  {
 
-        loginTask.efetuarLogin();
-        produtoTask.selecionarProduto();
-        checkoutTask.preencherCheckout();
-        finishTask.finalizarCompra();
+        try {
+
+            loginTask.efetuarLogin();
+            produtoTask.selecionarProduto();
+            checkoutTask.preencherCheckout2();
+            finishTask.finalizarCompra();
+
+        } catch (Exception e) {
+            TakesScreenshot.screenshotPage(driver, "ERRO");
+            throw e;
+        }
+
+
+
     }
 
 }

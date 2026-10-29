@@ -3,6 +3,7 @@ package framework.Utils;
 
 import net.datafaker.Faker;
 
+import java.text.Normalizer;
 import java.util.Locale;
 public class FakersGenerations {
 
@@ -17,6 +18,11 @@ public class FakersGenerations {
         faker = new Faker(new Locale("pt-BR"));
     }
 
+
+/*    public static String removerAcentos(String texto){
+        return Normalizer
+
+    }*/
     public String getFirstName(){
 
         firstName = faker.name().firstName();
