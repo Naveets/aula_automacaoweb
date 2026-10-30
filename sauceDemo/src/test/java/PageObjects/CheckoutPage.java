@@ -8,29 +8,30 @@ public class CheckoutPage {
 
     private WebDriver driver;
 
-    public CheckoutPage(WebDriver driver) {
+    public CheckoutPage(WebDriver driver){
 
         this.driver = driver;
-
     }
 
-    public WebElement getFirstNameInput() {
+    public WebElement getFirstNameInput(){
 
         return driver.findElement(By.id("first-name"));
     }
 
-    public WebElement getLastNameInput() {
+    public WebElement getLastNameInput(){
 
         return driver.findElement(By.id("last-name"));
     }
 
-    public WebElement getZipCodeInput() {
+    public WebElement getZipCodeInput(){
 
         return driver.findElement(By.id("postal-code"));
     }
 
-    public WebElement getContinueInput() {
+    public WebElement getContinueButton(){
 
         return driver.findElement(By.id("continue"));
     }
+
+
 }

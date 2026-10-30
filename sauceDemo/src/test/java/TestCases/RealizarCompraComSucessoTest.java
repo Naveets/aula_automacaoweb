@@ -1,15 +1,20 @@
 package TestCases;
 
+import Framework.TestBase;
+import Framework.Utils.TakeScreenshot;
 import Tasks.CheckoutTask;
 import Tasks.FinishTask;
 import Tasks.LoginTask;
 import Tasks.ProdutoTask;
-import framework.TestBase;
-import net.bytebuddy.implementation.bytecode.Throw;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+@Epic("Teste E-comerce")
+@Feature("Realizar Compra com Sucesso")
 public class RealizarCompraComSucessoTest extends TestBase {
 
     private final WebDriver driver = getDriverManager();
@@ -20,21 +25,22 @@ public class RealizarCompraComSucessoTest extends TestBase {
     FinishTask finishTask = new FinishTask(driver);
 
     @Test
-    public void realizarCompra()  {
+    @Story("Usuário faz login com credenciais válidas")
+    @Description("Testa uma compra com sucesso")
+    public void realizarCompra() throws InterruptedException {
 
-        try {
-
+        try{
             loginTask.efetuarLogin();
             produtoTask.selecionarProduto();
             checkoutTask.preencherCheckout2();
             finishTask.finalizarCompra();
 
-        } catch (Exception e) {
-            TakesScreenshot.screenshotPage(driver, "ERRO");
+        }catch (Exception e){
+
+            TakeScreenshot.screenshotPage(driver,"ERRO");
             throw e;
+
         }
-
-
 
     }
 

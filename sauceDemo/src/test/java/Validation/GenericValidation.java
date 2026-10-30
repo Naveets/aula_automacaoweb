@@ -19,19 +19,24 @@ public class GenericValidation {
 
         try {
             String label = genericPage.getTextTitle().getText();
-            Assertions.assertEquals(texto,label);
+            Assertions.assertEquals(texto, label);
+            Framework.Utils.TakeScreenshot.screenshotPage(driver, texto);
         } catch (Exception e) {
-            e.getMessage();
+            Framework.Utils.TakeScreenshot.screenshotPage(driver, texto);
+            throw e;
         }
+
     }
 
-    public  void validationProduto(){
+    public void validationProduto() {
+
         try {
             String labelProduto = genericPage.getTextProduto().getText();
             Assertions.assertEquals("Sauce Labs Onesie", labelProduto);
-        }catch (Exception e){
-            e.getMessage();
+            Framework.Utils.TakeScreenshot.screenshotPage(driver, "Selecionar Produto");
+        } catch (Exception e) {
+            Framework.Utils.TakeScreenshot.screenshotPage(driver, "Selecionar Produto");
+            throw e;
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package framework.Browser;
+package Framework.Browser;
 
 public enum TypeBrowser {
 
@@ -6,4 +6,6 @@ public enum TypeBrowser {
     FIREFOX,
     EDGE,
     HEADLESS;
+
+
 }

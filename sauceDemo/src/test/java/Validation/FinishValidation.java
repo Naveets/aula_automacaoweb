@@ -3,6 +3,7 @@ package Validation;
 import PageObjects.FinishPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import Framework.Utils.TakeScreenshot;
 
 public class FinishValidation {
 
@@ -16,12 +17,14 @@ public class FinishValidation {
     }
 
     public void validationSucessoCompra() {
+
         try {
-            Assertions.assertEquals("Thank you for your order!",
-                    finishPage.getFinishTextLabel().getText());
+
+            Assertions.assertEquals("Thank you for your order!", finishPage.getFinishTextLabel().getText());
+            TakeScreenshot.screenshotPage(driver, "Finish");
         } catch (Exception e) {
-            e.getMessage();
+            Framework.Utils.TakeScreenshot.screenshotPage(driver, "Finish");
+            throw e;
         }
     }
-
 }

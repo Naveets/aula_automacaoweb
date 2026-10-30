@@ -4,6 +4,7 @@ import PageObjects.CheckoutPage;
 import framework.Utils.FileOperations;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import Framework.Utils.TakeScreenshot;
 
 public class CheckoutValidation {
 
@@ -41,8 +42,8 @@ public class CheckoutValidation {
 
 
         } catch (Exception e) {
-
-            e.getMessage();
+            TakeScreenshot.screenshotPage(driver,"Checkout");
+            throw e;
         }
     }
 }

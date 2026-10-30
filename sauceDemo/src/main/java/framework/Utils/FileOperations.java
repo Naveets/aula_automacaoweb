@@ -1,4 +1,4 @@
-package framework.Utils;
+package Framework.Utils;
 
 import java.io.*;
 import java.util.Properties;
@@ -6,27 +6,30 @@ import java.util.Properties;
 public class FileOperations {
 
     private static final String DIR_PATH_PROPERTIES =
-            System.getProperty("user_dir") + File.separator + "src" + File.separator +
-                    "main" + File.separator + "resources" + File.separator + "Properties" +
-                    File.separator;
+            System.getProperty("user.dir") + File.separator + "src" + File.separator +
+                    "main" + File.separator + "resources" + File.separator +
+                    "Properties" + File.separator;
+
 
     //Metodo para pegar dados dos arquivos de properties
     public static Properties getProperties(String fileName){
 
-        InputStream input = null;
+        InputStream input= null;
 
         Properties prop = new Properties();
 
         try {
 
-            File file = new File(DIR_PATH_PROPERTIES + fileName + ".properties");
-            input = new FileInputStream(file);
-            prop.load(input);
-            return prop;
+             File file = new File(DIR_PATH_PROPERTIES + fileName + ".properties");
+             input = new FileInputStream(file);
+             prop.load(input);
+             return prop;
+
         } catch (Exception e) {
 
-            System.out.println("Não foi possivel carregar o arquivo de propriedade");
+            System.out.println("Nao foi possivel carregar o arquivo de propriedade");
         }
+
         return prop;
     }
 
@@ -42,8 +45,12 @@ public class FileOperations {
             prop.store(output,null);
 
         } catch (IOException e) {
+
             e.printStackTrace();
+
         }
+
+
 
     }
 }

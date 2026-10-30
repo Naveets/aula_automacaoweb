@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
+
     private WebDriver driver;
 
     public LoginPage (WebDriver driver){
@@ -13,19 +14,24 @@ public class LoginPage {
     }
 
     public WebElement getUserNameInput(){
+
         /*WebElement name = driver.findElement(By.id("user-name"));
-        return name;*/
+        return  name;*/
 
         return driver.findElement(By.id("user-name"));
     }
 
-    public WebElement getUserPasswordInput(){
-        return driver.findElement(By.id("password"));
+    public WebElement getPasswordInput(){
 
+        return driver.findElement(By.id("password"));
     }
 
     public WebElement getLoginButton(){
 
         return driver.findElement(By.id("login-button"));
     }
+
+
+
+
 }

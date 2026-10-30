@@ -1,41 +1,43 @@
 package Tasks;
 
+import Framework.Browser.Waits;
 import PageObjects.FinishPage;
 import PageObjects.LoginPage;
-import Validation.FinishValidation;
-import Validation.GenericValidation;
-import Validation.LoginValidation;
-import framework.Browser.Waits;
+import Validacao.FinishValidacao;
+import Validacao.GenericValidacao;
+import Validacao.LoginValidacao;
 import org.openqa.selenium.WebDriver;
 
 public class FinishTask {
 
-    private LoginPage loginPage;
     private WebDriver driver;
     private FinishPage finishPage;
-    private GenericValidation genericValidation;
-    private FinishValidation finishValidation;
-    private LoginValidation loginValidation;
+    private GenericValidacao genericValidacao;
+    private FinishValidacao finishValidacao;
+    private LoginValidacao loginValidacao;
     private Waits waits;
+    private LoginPage loginPage;
+
     public FinishTask (WebDriver driver){
 
         this.driver = driver;
         finishPage = new FinishPage(this.driver);
-        genericValidation = new GenericValidation(this.driver);
-        finishValidation = new FinishValidation(this.driver);
-        loginValidation = new LoginValidation(this.driver);
+        genericValidacao = new GenericValidacao(this.driver);
+        finishValidacao = new FinishValidacao(this.driver);
+        loginValidacao = new LoginValidacao(this.driver);
         waits = new Waits(this.driver);
         loginPage = new LoginPage(this.driver);
     }
 
-    public void finalizarCompra()  {
-        genericValidation.validationTitlePages("Checkout: Complete!");
-        finishValidation.validationSucessoCompra();
+    public void finalizarCompra(){
+
+        waits.loadElement(finishPage.getFinishTextLabel());
+        genericValidacao.validationTitlePages("Checkout: Complete!");
+        finishValidacao.validationSucessoCompra();
         finishPage.getMenuButton().click();
         waits.loadElement(finishPage.getMenuLogoutLink());
         finishPage.getMenuLogoutLink().click();
         waits.loadElement(loginPage.getLoginButton());
-        loginValidation.loginValidation();
-
+        loginValidacao.loginValidation();
     }
 }

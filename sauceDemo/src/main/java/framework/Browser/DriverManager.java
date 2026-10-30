@@ -1,4 +1,4 @@
-package framework.Browser;
+package Framework.Browser;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -39,10 +39,10 @@ public class DriverManager {
 
             case HEADLESS:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions headlessoptions = new ChromeOptions();
-                headlessoptions.addArguments("--headless");
-                headlessoptions.addArguments("--window-size(1366,768)");
-                driver = new ChromeDriver(headlessoptions);
+                ChromeOptions headlessOptions = new ChromeOptions();
+                headlessOptions.addArguments("--headless");
+                headlessOptions.addArguments("--window-size(1366,768)");
+                driver = new ChromeDriver(headlessOptions);
                 break;
 
         }
@@ -50,14 +50,16 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver(TypeBrowser type){
-        if (driver == null) {
+
+        if (driver == null){
             driver = getManagerDrive(type);
         }
         return driver;
     }
 
     public static void fecharDriver(){
-        if(driver !=null) {
+
+        if (driver !=null) {
 
             driver.quit();
             driver = null;

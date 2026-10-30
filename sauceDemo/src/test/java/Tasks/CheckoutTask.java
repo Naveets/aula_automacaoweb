@@ -1,59 +1,74 @@
 package Tasks;
 
+import Framework.Utils.FakersGeneration;
+import Framework.Utils.FileOperations;
 import PageObjects.CheckoutPage;
-import Validation.CheckoutValidation;
-import Validation.GenericValidation;
-import framework.Utils.FakersGenerations;
-import framework.Utils.FileOperations;
+import PageObjects.FinishPage;
+import Validacao.CheckoutValidacao;
+import Validacao.GenericValidacao;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutTask {
 
     private WebDriver driver;
     private CheckoutPage checkoutPage;
-    private GenericValidation genericValidation;
-    private CheckoutValidation checkoutValidation;
-    private FakersGenerations fakersGenerations;
+    private GenericValidacao genericValidacao;
+    private CheckoutValidacao checkoutValidacao;
+    private FakersGeneration fakersGeneration;
+    private FinishPage finishPage;
 
-    public CheckoutTask(WebDriver driver) {
+    public CheckoutTask (WebDriver driver){
 
         this.driver = driver;
         checkoutPage = new CheckoutPage(this.driver);
-        genericValidation = new GenericValidation(this.driver);
-        checkoutValidation = new CheckoutValidation(this.driver);
-        fakersGenerations = new FakersGenerations();
+        genericValidacao = new GenericValidacao(this.driver);
+        checkoutValidacao = new CheckoutValidacao(this.driver);
+        fakersGeneration = new FakersGeneration();
+        finishPage = new FinishPage(this.driver);
     }
-    //    public void preencherCheckout()  {
-    //        genericValidation.validationTitlePages("Checkout: Your Information");
-    //        checkoutPage.getFirstNameInput().sendKeys(fakersGenerations.getFirstName());
-    //        checkoutPage.getLastNameInput().sendKeys(fakersGenerations.getLastName());
-    //        checkoutPage.getZipCodeInput().sendKeys(fakersGenerations.getZipCode());
-    //        checkoutValidation.validaForm();
-    //        checkoutPage.getContinueInput().click();
-    //        genericValidation.validationTitlePages("Checkout: Overview");
-    //        genericValidation.validationProduto();
 
-    public void preencherCheckout2()  {
+    public void preencherCheckout() throws InterruptedException {
 
-        String name = fakersGenerations.getFirstName();
-        String lastName = fakersGenerations.getLastName();
-        String zipCode = fakersGenerations.getZipCode();
+        genericValidacao.validationTitlePages("Checkout: Your Information");
+        checkoutPage.getFirstNameInput().sendKeys(fakersGeneration.getFisrtName());
+        Thread.sleep(1000);
+        checkoutPage.getLastNameInput().sendKeys(fakersGeneration.getLastName());
+        Thread.sleep(1000);
+        checkoutPage.getZipCodeInput().sendKeys(fakersGeneration.getZipCode());
+        Thread.sleep(1000);
+        checkoutValidacao.validaForm();
+        checkoutPage.getContinueButton().click();
+        genericValidacao.validationTitlePages("Checkout: Overview");
+        genericValidacao.validationProduto();
+        finishPage.getFinishButton().click();
+
+
+    }
+
+    public void preencherCheckout2() throws InterruptedException {
+
+        String name = fakersGeneration.getFisrtName();
+        String lastName = fakersGeneration.getLastName();
+        String zipCode = fakersGeneration.getZipCode();
 
         FileOperations.setProperties("form","primeiroNome",name);
-        FileOperations.setProperties("form","segundoNome",lastName);
+        FileOperations.setProperties("form","ultimoNome",lastName);
         FileOperations.setProperties("form","cep",zipCode);
 
-
-
-        genericValidation.validationTitlePages("Checkout: Your Information");
+        genericValidacao.validationTitlePages("Checkout: Your Information");
         checkoutPage.getFirstNameInput().sendKeys(name);
+        Thread.sleep(1000);
         checkoutPage.getLastNameInput().sendKeys(lastName);
+        Thread.sleep(1000);
         checkoutPage.getZipCodeInput().sendKeys(zipCode);
-        checkoutValidation.validaCamposForm();
-        checkoutPage.getContinueInput().click();
-        genericValidation.validationTitlePages("Checkout: Overview");
-        genericValidation.validationProduto();
+        Thread.sleep(1000);
+        checkoutValidacao.validaCamposForm();
+        checkoutPage.getContinueButton().click();
+        genericValidacao.validationTitlePages("Checkout: Overview");
+        genericValidacao.validationProduto();
+        finishPage.getFinishButton().click();
+
+
 
     }
-
 }

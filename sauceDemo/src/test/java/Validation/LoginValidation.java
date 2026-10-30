@@ -16,13 +16,16 @@ public class LoginValidation {
 
     }
 
-    public void loginValidation() {
+    public void loginValidation(){
+
         try {
+
             Assertions.assertTrue(loginPage.getLoginButton().isDisplayed());
+            Framework.Utils.TakeScreenshot.screenshotPage(driver,"Login");
 
         } catch (Exception e) {
-            e.getMessage();
+            Framework.Utils.TakeScreenshot.screenshotPage(driver,"Login");
+            throw e;
         }
     }
-
 }

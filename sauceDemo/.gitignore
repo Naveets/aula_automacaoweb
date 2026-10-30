@@ -62,4 +62,4 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.ja
 
 #####Relatorios#####
-allure-results/*0
+allure-results/*
